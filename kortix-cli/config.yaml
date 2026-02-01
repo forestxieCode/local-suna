@@ -1,0 +1,71 @@
+# Kortix CLI 配置文件
+
+# 阿里云百炼 LLM 配置
+llm:
+  provider: dashscope
+  # API Key 可以在这里填写，或使用环境变量 DASHSCOPE_API_KEY
+  api_key: ${DASHSCOPE_API_KEY}
+  # 可选模型：
+  # qwen-turbo (经济型, ¥2/百万tokens)
+  # qwen-plus (平衡型, ¥4/百万tokens)
+  # qwen-max (最强, ¥40/百万tokens)
+  # qwen-long (长文本, ¥0.5/百万tokens, 支持100万tokens上下文)
+  model: qwen-plus  # 使用 plus 以支持更好的 function calling
+  
+  # 生成参数
+  temperature: 0.7
+  max_tokens: 2000
+  
+  # Function Calling 配置
+  enable_function_calling: true
+
+# Docker 沙箱配置
+sandbox:
+  enabled: true
+  # Docker 镜像（用于代码执行）
+  image: python:3.11-slim
+  # 超时时间（秒）
+  timeout: 60
+  # 内存限制（MB）
+  memory_limit: 512
+
+# 工具配置
+tools:
+  # 文件管理
+  file_manager:
+    enabled: true
+    workspace_dir: ./workspace
+  
+  # Web 搜索（需要 TAVILY_API_KEY）
+  web_search:
+    enabled: true  # 如果没有API Key会自动禁用
+    api_key: ${TAVILY_API_KEY}
+  
+  # Shell 命令
+  shell:
+    enabled: true
+  
+  # 计算器
+  calculator:
+    enabled: true
+  
+  # 代码执行
+  code_executor:
+    enabled: true
+
+# 对话历史配置
+history:
+  # 是否保存到文件
+  save_to_file: true
+  # 保存路径
+  file_path: ./conversations/
+  # 最大历史消息数（控制上下文长度）
+  max_messages: 50
+
+# 日志配置
+logging:
+  # 日志级别：DEBUG, INFO, WARNING, ERROR
+  level: INFO
+  # 是否保存日志文件
+  save_to_file: false
+  file_path: ./logs/kortix.log
