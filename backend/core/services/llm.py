@@ -83,6 +83,7 @@ def setup_api_keys() -> None:
     if not config:
         return
     
+    # International providers
     if getattr(config, 'ANTHROPIC_API_KEY', None):
         os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
     
@@ -101,6 +102,31 @@ def setup_api_keys() -> None:
     
     if getattr(config, 'AWS_BEARER_TOKEN_BEDROCK', None):
         os.environ["AWS_BEARER_TOKEN_BEDROCK"] = config.AWS_BEARER_TOKEN_BEDROCK
+    
+    # China-friendly providers
+    if getattr(config, 'DASHSCOPE_API_KEY', None):
+        os.environ["DASHSCOPE_API_KEY"] = config.DASHSCOPE_API_KEY
+        logger.info("DashScope (Aliyun Bailian) API key configured")
+    
+    if getattr(config, 'ZHIPU_API_KEY', None):
+        os.environ["ZHIPU_API_KEY"] = config.ZHIPU_API_KEY
+        logger.info("Zhipu AI API key configured")
+    
+    if getattr(config, 'OLLAMA_BASE_URL', None):
+        os.environ["OLLAMA_BASE_URL"] = config.OLLAMA_BASE_URL
+        logger.info(f"Ollama base URL configured: {config.OLLAMA_BASE_URL}")
+    
+    # Log configured China-friendly providers
+    china_providers = []
+    if os.getenv("DASHSCOPE_API_KEY"):
+        china_providers.append("DashScope")
+    if os.getenv("ZHIPU_API_KEY"):
+        china_providers.append("ZhipuAI")
+    if os.getenv("OLLAMA_BASE_URL") or "localhost:11434" in os.environ.get("OLLAMA_BASE_URL", ""):
+        china_providers.append("Ollama")
+    
+    if china_providers:
+        logger.info(f"🇨🇳 China-friendly LLM providers available: {', '.join(china_providers)}")
 
 
 def _configure_openai_compatible(model_name: str, api_key: Optional[str], api_base: Optional[str]) -> None:

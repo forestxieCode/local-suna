@@ -21,6 +21,48 @@ Build, manage, and train sophisticated AI agents for any use case. Create powerf
 [Русский](https://www.readme-i18n.com/kortix-ai/suna?lang=ru) | 
 [中文](https://www.readme-i18n.com/kortix-ai/suna?lang=zh)
 
+---
+
+## 🇨🇳 中国用户快速开始
+
+**无需VPN，5分钟本地部署！** 查看完整的[中国化部署指南](README_CHINA.md)
+
+### 本地部署（完全免费）
+
+```bash
+# 1. 安装 Docker 和 Ollama
+# Docker: https://www.docker.com/products/docker-desktop
+# Ollama: https://ollama.ai/download
+
+# 2. 启动所有服务
+docker compose -f docker-compose.local.yaml up -d
+
+# 3. 拉取本地LLM模型
+ollama pull qwen2.5:7b
+
+# 4. 访问应用
+# 前端: http://localhost:3000
+# 后端: http://localhost:8000
+```
+
+### 云端部署（阿里云/腾讯云）
+
+支持阿里云全家桶、腾讯云全家桶或混合部署。详见[部署指南](docs/CHINA_DEPLOYMENT_GUIDE.md)
+
+**特性**：
+- ✅ 数据库：阿里云RDS / 腾讯云TDSQL / 本地PostgreSQL
+- ✅ 存储：阿里云OSS / 腾讯云COS / MinIO
+- ✅ LLM：阿里百炼 / Ollama本地 / 智谱AI
+- ✅ 沙箱：Docker本地执行（免费）
+
+**文档**：
+- [中国化项目总结](README_CHINA.md)
+- [完整部署指南](docs/CHINA_DEPLOYMENT_GUIDE.md)
+- [LLM提供商对比](docs/CHINA_LLM_PROVIDERS.md)
+- [Docker沙箱快速开始](docs/DOCKER_SANDBOX_QUICKSTART.md)
+
+---
+
 ![Kortix Screenshot](apps/frontend/public/banner.png)
 </div>
 

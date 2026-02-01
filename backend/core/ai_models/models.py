@@ -14,6 +14,12 @@ class ModelProvider(Enum):
     XAI = "xai"
     MOONSHOTAI = "moonshotai"
     MINIMAX = "minimax"
+    # China-friendly LLM providers
+    DASHSCOPE = "dashscope"  # Aliyun Bailian (阿里百炼)
+    HUNYUAN = "hunyuan"  # Tencent Hunyuan (腾讯混元)
+    ZHIPU = "zhipu"  # Zhipu AI GLM (智谱AI)
+    BAIDU = "baidu"  # Baidu Wenxin (百度文心)
+    OLLAMA = "ollama"  # Local Ollama deployment
 
 class ModelCapability(Enum):
     CHAT = "chat"

@@ -40,9 +40,19 @@ dependencies = [
   "e2b-code-interpreter==1.2.0",
   "certifi>=2025.4.26",
   "python-ripgrep==0.0.6",
-  "daytona-sdk>=0.115.0",
+  # Sandbox providers
+  "daytona-sdk>=0.115.0",  # Legacy (deprecated, use Docker instead)
   "daytona-api-client>=0.115.0",
   "daytona-api-client-async>=0.115.0",
+  "docker>=7.0.0",  # NEW: Docker-based sandboxes (China-friendly)
+  
+  # China-friendly cloud services
+  "oss2>=2.18.0",  # Aliyun OSS (object storage)
+  "dashscope>=1.14.0",  # Aliyun Bailian LLM
+  "alibabacloud-dysmsapi20170525>=2.0.0",  # Aliyun SMS
+  "cos-python-sdk-v5>=1.9.0",  # Tencent COS (object storage)
+  "tencentcloud-sdk-python>=3.0.0",  # Tencent Cloud SDK
+  "minio>=7.2.0",  # MinIO (local S3-compatible storage)
   "boto3>=1.40.74",
   "openai>=1.99.5",
   "nest-asyncio==1.6.0",
@@ -77,7 +87,7 @@ dependencies = [
   "weasyprint>=63.0",
   "cssutils>=2.9.0",
   "fastapi-sso>=0.9.0",
-  "daytona>=0.21.6",
+  "daytona>=0.21.6",  # Legacy CLI (deprecated)
   "google-api-python-client>=2.120.0",
   "google-auth>=2.28.0",
   "google-auth-oauthlib>=1.2.0",
@@ -103,6 +113,13 @@ dependencies = [
   "psycopg[binary]>=3.3.2",
   "sqlalchemy>=2.0.45",
   "greenlet>=3.3.0",
+  # China-friendly cloud services
+  "oss2>=2.18.0",  # Aliyun OSS (Object Storage Service)
+  "dashscope>=1.14.0",  # Aliyun Bailian (LLM service)
+  "alibabacloud-dysmsapi20170525>=2.0.0",  # Aliyun SMS service
+  "cos-python-sdk-v5>=1.9.0",  # Tencent Cloud COS
+  "tencentcloud-sdk-python>=3.0.0",  # Tencent Cloud SDK
+  "minio>=7.2.0",  # MinIO (local S3-compatible storage)
 ]
 
 [project.urls]

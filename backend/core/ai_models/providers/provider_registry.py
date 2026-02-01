@@ -17,6 +17,25 @@ class ProviderRegistry:
         self.register("minimax", MiniMaxProvider(use_openrouter=False))
         self.register("openrouter", OpenRouterProvider())
         self.register("minimax_openrouter", MiniMaxProvider(use_openrouter=True))
+        
+        # China-friendly providers
+        try:
+            from .dashscope import DashScopeConfig
+            self.register("dashscope", DashScopeConfig())
+        except ImportError:
+            pass
+        
+        try:
+            from .ollama import OllamaConfig
+            self.register("ollama", OllamaConfig())
+        except ImportError:
+            pass
+        
+        try:
+            from .zhipu import ZhipuAIConfig
+            self.register("zhipu", ZhipuAIConfig())
+        except ImportError:
+            pass
     
     def register(self, name: str, provider: ProviderConfig):
         self._providers[name] = provider
@@ -51,6 +70,16 @@ class ProviderRegistry:
         
         if model_lower.startswith("minimax/"):
             return self._providers.get("minimax")
+        
+        # China-friendly providers
+        if model_lower.startswith("dashscope/") or "qwen" in model_lower:
+            return self._providers.get("dashscope")
+        
+        if model_lower.startswith("ollama/"):
+            return self._providers.get("ollama")
+        
+        if model_lower.startswith("zhipu/") or "glm" in model_lower:
+            return self._providers.get("zhipu")
         
         return None
     
