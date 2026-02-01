@@ -20,6 +20,30 @@ class DashScopeConfig(ProviderConfig):
     api_key_env = "DASHSCOPE_API_KEY"
     api_base = "https://dashscope.aliyuncs.com/compatible-mode/v1"
     
+    @property
+    def capabilities(self) -> List:
+        """DashScope supports basic chat and function calling."""
+        from .base import ProviderCapability
+        return [
+            ProviderCapability.CHAT,
+            ProviderCapability.FUNCTION_CALLING,
+            ProviderCapability.STREAMING,
+        ]
+    
+    def get_extra_params(self, model_id: str, **kwargs) -> dict:
+        """No extra parameters needed for DashScope."""
+        return {}
+    
+    def get_headers(self, model_id: str) -> dict:
+        """Standard headers for DashScope API."""
+        return {
+            "Content-Type": "application/json",
+        }
+    
+    def get_extra_headers(self, model_id: str) -> dict:
+        """No extra headers needed for DashScope."""
+        return {}
+    
     @classmethod
     def get_models(cls) -> List[Model]:
         """

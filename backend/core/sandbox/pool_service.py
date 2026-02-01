@@ -9,7 +9,12 @@ from daytona_sdk import SessionExecuteRequest, SandboxState
 
 from core.utils.logger import logger
 from core.sandbox.pool_config import get_pool_config, SandboxPoolConfig
-from core.sandbox.sandbox import create_sandbox, delete_sandbox, get_or_start_sandbox, daytona
+try:
+    from core.sandbox.sandbox import create_sandbox, delete_sandbox, get_or_start_sandbox, daytona
+except ImportError:
+    # When using adapter system, daytona object doesn't exist
+    from core.sandbox.sandbox import create_sandbox, delete_sandbox, get_or_start_sandbox
+    daytona = None
 from core.sandbox import pool_repo
 
 

@@ -14,7 +14,13 @@ from fastapi.responses import Response
 from pydantic import BaseModel
 from daytona_sdk import AsyncSandbox, SessionExecuteRequest
 
-from core.sandbox.sandbox import get_or_start_sandbox, delete_sandbox, create_sandbox, daytona
+try:
+    from core.sandbox.sandbox import get_or_start_sandbox, delete_sandbox, create_sandbox, daytona
+except ImportError:
+    # When using adapter system, daytona object doesn't exist
+    from core.sandbox.sandbox import get_or_start_sandbox, delete_sandbox, create_sandbox
+    daytona = None
+    
 from core.utils.logger import logger
 from core.utils.auth_utils import get_optional_user_id, verify_and_get_user_id_from_jwt, verify_sandbox_access, verify_sandbox_access_optional
 from core.services.supabase import DBConnection

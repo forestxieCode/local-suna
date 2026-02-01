@@ -21,6 +21,30 @@ class OllamaConfig(ProviderConfig):
     api_base_env = "OLLAMA_BASE_URL"
     default_api_base = "http://localhost:11434"
     
+    @property
+    def capabilities(self) -> List:
+        """Ollama supports basic chat and function calling."""
+        from .base import ProviderCapability
+        return [
+            ProviderCapability.CHAT,
+            ProviderCapability.FUNCTION_CALLING,
+            ProviderCapability.STREAMING,
+        ]
+    
+    def get_extra_params(self, model_id: str, **kwargs) -> dict:
+        """No extra parameters needed for Ollama."""
+        return {}
+    
+    def get_headers(self, model_id: str) -> dict:
+        """Standard headers for Ollama API."""
+        return {
+            "Content-Type": "application/json",
+        }
+    
+    def get_extra_headers(self, model_id: str) -> dict:
+        """No extra headers needed for Ollama."""
+        return {}
+    
     @classmethod
     def get_models(cls) -> List[Model]:
         """

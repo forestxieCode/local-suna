@@ -9,7 +9,7 @@ classifiers = [
   "License :: OSI Approved :: Apache-2.0 License",
   "Programming Language :: Python :: 3.11",
 ]
-requires-python = ">=3.11"
+requires-python = ">=3.11,<4.0"
 dependencies = [
   "python-dotenv==1.0.1",
   "litellm>=1.80.11",
@@ -64,7 +64,7 @@ dependencies = [
   "prometheus-client==0.21.1",
   "langfuse==2.60.5",
   "Pillow>=10.4.0",
-  "vtracer>=0.6.0",
+  # "vtracer>=0.6.0",  # Requires Rust compiler, temporarily disabled
   "replicate>=0.25.0",
   "mcp==1.9.4",
   "aiohttp==3.12.0",

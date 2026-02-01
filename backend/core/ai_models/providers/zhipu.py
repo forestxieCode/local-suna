@@ -19,6 +19,31 @@ class ZhipuAIConfig(ProviderConfig):
     api_key_env = "ZHIPU_API_KEY"
     api_base = "https://open.bigmodel.cn/api/paas/v4"
     
+    @property
+    def capabilities(self) -> List:
+        """ZhipuAI supports chat, function calling and vision."""
+        from .base import ProviderCapability
+        return [
+            ProviderCapability.CHAT,
+            ProviderCapability.FUNCTION_CALLING,
+            ProviderCapability.VISION,
+            ProviderCapability.STREAMING,
+        ]
+    
+    def get_extra_params(self, model_id: str, **kwargs) -> dict:
+        """No extra parameters needed for ZhipuAI."""
+        return {}
+    
+    def get_headers(self, model_id: str) -> dict:
+        """Standard headers for ZhipuAI API."""
+        return {
+            "Content-Type": "application/json",
+        }
+    
+    def get_extra_headers(self, model_id: str) -> dict:
+        """No extra headers needed for ZhipuAI."""
+        return {}
+    
     @classmethod
     def get_models(cls) -> List[Model]:
         """Available GLM models."""
